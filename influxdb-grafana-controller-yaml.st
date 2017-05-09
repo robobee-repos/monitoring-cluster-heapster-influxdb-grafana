@@ -1,15 +1,13 @@
-influxdbGrafanaController(parent, vars) ::= <<
-apiVersion: v1
-kind: ReplicationController
+influxdb-grafana-controller-yaml(parent, vars) ::= <<
+apiVersion: extensions/v1beta1
+kind: Deployment
 metadata:
   name: monitoring-influxdb-grafana-<parent.influxGrafanaVersion>
   namespace: kube-system
-  labels:
-    k8s-app: influxGrafana
-    version: <parent.influxGrafanaVersion>
-    kubernetes.io/cluster-service: "true"
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     k8s-app: influxGrafana
     version: <parent.influxGrafanaVersion>

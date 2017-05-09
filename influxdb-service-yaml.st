@@ -1,13 +1,9 @@
-influxdbService(parent, vars) ::= <<
+influxdb-service-yaml(parent, vars) ::= <<
 apiVersion: v1
 kind: Service
 metadata:
   name: monitoring-influxdb
   namespace: kube-system
-  labels: 
-    kubernetes.io/cluster-service: "true"
-    addonmanager.kubernetes.io/mode: Reconcile
-    kubernetes.io/name: "InfluxDB"
 spec: 
   ports: 
     - name: http

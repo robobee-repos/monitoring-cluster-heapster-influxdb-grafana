@@ -1,15 +1,13 @@
-heapsterController(parent, vars) ::= <<
+heapster-controller-yaml(parent, vars) ::= <<
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: heapster-<parent.heapsterVersion>
   namespace: kube-system
-  labels:
-    k8s-app: heapster
-    kubernetes.io/cluster-service: "true"
-    version: <parent.heapsterVersion>
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       k8s-app: heapster

@@ -1,13 +1,9 @@
-heapsterService(parent, vars) ::= <<
+heapster-service-yaml(parent, vars) ::= <<
 kind: Service
 apiVersion: v1
 metadata:
   name: heapster
   namespace: kube-system
-  labels:
-    kubernetes.io/cluster-service: "true"
-    addonmanager.kubernetes.io/mode: Reconcile
-    kubernetes.io/name: "Heapster"
 spec:
   ports:
     - port: 80
